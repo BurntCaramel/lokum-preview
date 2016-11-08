@@ -1,0 +1,22 @@
+html {
+	font-family: sans-serif;
+}
+
+html, body, #app, main {
+	height: 100%;
+	margin: 0;
+}
+main {
+	position: relative;
+	color: #fafafa;
+	background: #111;
+}
+header {
+	text-align: center;
+	line-height: 2;
+}
+header input {
+	font-size: 1rem;
+	vertical-align: baseline;
+	border: none;
+}
