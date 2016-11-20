@@ -55,12 +55,27 @@ for (var i = 0; i < links.length; i++) {
 	contentDocument.close()
 }
 
+function navigatedTo({ boardID, path = '' }) {
+	const hash = `#${ boardID }${ path }`
+	window.location.hash = hash
+}
+
+function conformPath(path) {
+	if (path === '/' || path[path.length - 1] === '/') {
+		return path
+	}
+	else {
+		return path + '/'
+	}
+}
+
 export default class App extends React.Component {
 	constructor(props) {
 		super(props)
 
 		this.state = {
-			initialBoardID: null
+			initialBoardID: null,
+			initialPath: '/'
 		}
 
 		this.onChangeBoardID = this.onChangeBoardID.bind(this)
@@ -69,15 +84,21 @@ export default class App extends React.Component {
 
 	componentWillMount() {
 		if (window) {
-			const potentialBoardID = window.location.hash.substring(1)
+			const hashInput = window.location.hash.substring(1)
+			const [ potentialBoardID, ...pathComponents ] = hashInput.split('/')
+			const path = '/' + (pathComponents.join('/') || '')
+
 			if (this.checkBoardIDAndLoad(potentialBoardID)) {
-				this.setState({ initialBoardID: potentialBoardID })
+				this.setState({
+					initialBoardID: potentialBoardID,
+					initialPath: path
+				})
 			}
 		}
 	}
 
 	componentDidMount() {
-		window.navigatePreviewToPath = this.reloadFrame.bind(this)
+		window.navigatePreviewToPath = this.navigatePreview.bind(this)
 	}
 
 	componentWillUnmount() {
@@ -86,15 +107,15 @@ export default class App extends React.Component {
 
 	loadBoard(boardID) {
 		Axios.get(`https://trello.com/b/${ boardID }.json`)
-    .then(response => {
+		.then(response => {
 			const routes = routesForTrelloData(response.data)
-			window.location.hash = `#${ boardID }`
+			//navigatedTo({ boardID })
 			this.setState({
-				boardJSON: response.data,
+				boardID,
 				boardError: null,
 				routes
 			}, () => {
-				this.reloadFrame()
+				this.navigatePreview()
 			})
 		})
 		.catch(error => {
@@ -120,16 +141,20 @@ export default class App extends React.Component {
 	
 	onSetIFrame(iframe) {
 		this.iframe = iframe
-		this.reloadFrame()
+		this.navigatePreview()
 	}
 
-	renderPath(pathToFind) {
+	htmlForPath(pathToFind) {
 		const { routes } = this.state
 		if (!routes) {
 			return
 		}
 
-		const matchingRoute = routes.find(({ path }) => path === pathToFind)
+		pathToFind = conformPath(pathToFind)
+
+		const matchingRoute = routes.find(({ path }) => (
+			conformPath(path) === pathToFind
+		))
 		if (!matchingRoute) {
 			return
 		}
@@ -142,15 +167,22 @@ export default class App extends React.Component {
 		return output
 	}
 
-	reloadFrame(path = '/') {
-		if (!this.iframe) {
+	navigatePreview(path = this.state.initialPath) {
+		const { iframe, state: { boardID } } = this
+
+		if (!iframe || !boardID) {
 			return
 		}
 
 		const { contentDocument } = this.iframe
 
-		const html = this.renderPath(path) || ''
-		renderPreviewHTMLToIFrame(html, this.iframe)
+		const html = this.htmlForPath(path) || ''
+		renderPreviewHTMLToIFrame(html, iframe)
+
+		navigatedTo({
+			boardID,
+			path
+		})
 	}
 
 	render() {
