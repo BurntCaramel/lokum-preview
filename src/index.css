@@ -2,7 +2,7 @@ html {
 	font-family: sans-serif;
 }
 
-html, body, #app, main {
+html, body, #root, main {
 	height: 100%;
 	margin: 0;
 }

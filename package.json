@@ -1,33 +1,19 @@
 {
-  "name": "brunch-app",
-  "description": "Description",
-  "author": "Your Name",
+  "name": "lokum-preview",
   "version": "0.1.0",
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
-  "scripts": {
-    "start": "brunch watch --server",
-    "build": "brunch build --production"
-  },
   "dependencies": {
-    "axios": "^0.15.2",
-    "lokum": "^0.1.2",
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "axios": "^0.15.3",
+    "lokum": "^0.2.2",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
   },
   "devDependencies": {
-    "auto-reload-brunch": "^2.0.0",
-    "autoprefixer": "^6.5.1",
-    "babel-brunch": "^6.0.6",
-    "babel-preset-react": "^6.16.0",
-    "brunch": "^2.0.0",
-    "clean-css-brunch": "^2.0.0",
-    "css-brunch": "^2.0.0",
-    "fingerprint-brunch": "^1.2.8",
-    "javascript-brunch": "^2.0.0",
-    "postcss-brunch": "^2.0.5",
-    "uglify-js-brunch": "^2.0.0"
+    "react-scripts": "0.9.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   }
 }
