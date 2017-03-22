@@ -3471,9 +3471,9 @@ lodash.uniq@^4.3.0:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
-lokum@^0.2.4:
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/lokum/-/lokum-0.2.4.tgz#dae61271879553bd0f0a9020723eb0fbbda39033"
+lokum@^0.2.5:
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/lokum/-/lokum-0.2.5.tgz#003a249d2ff37cd20a2857049e16b0c048c701f2"
   dependencies:
     axios "^0.15.2"
     cheerio "^0.22.0"

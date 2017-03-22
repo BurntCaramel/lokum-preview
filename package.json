@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "dependencies": {
     "axios": "^0.15.3",
-    "lokum": "^0.2.4",
+    "lokum": "^0.2.5",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   },
