@@ -178,20 +178,17 @@ export default class App extends React.Component {
 	checkBoardID(input, { path = '', displayOptions, load = false } = {}) {
 		input = input.trim()
 		input = input.replace(/^https?:\/\/trello.com\/b\//, '')
-		input = input.split('/')[0]
-
-		if (input.length === 0) {
-			return false
-		}
+		const boardID = input.split('/')[0]
 
 		this.setState(Object.assign({
-			boardID: input,
+			boardID,
 			initialPath: path,
 		}, !!displayOptions ? { displayOptions } : null))
 		
-		if (load) {
+		if (load && boardID.length > 0) {
 			this.loadBoard(input)
 		}
+		
 		return true
 	}
 
