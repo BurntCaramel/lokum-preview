@@ -274,8 +274,9 @@ export default class App extends React.Component {
 						/>
 						{ boardError && <p style={ errorStyle }>Error loading: { boardError.message }</p> }
 						<a href="https://github.com/RoyalIcing/lokum" style={{
-							position: 'relative',
+							position: 'absolute',
 							top: 3,
+							right: '0.5rem',
 							display: 'inline-block',
 							marginLeft: '1rem',
 							verticalAlign: 'middle'
