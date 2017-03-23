@@ -263,8 +263,7 @@ export default class App extends React.Component {
 			<main>
 				{ (!nobar) &&
 					<header style={ headerStyle }>
-						Trello Board ID:
-						&nbsp;
+						{ 'Trello Board ID: ' }
 						<input
 							value={ boardID }
 							placeholder='Paste URL'
