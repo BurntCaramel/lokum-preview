@@ -8,10 +8,12 @@ const headerHeight = '2rem'
 
 const headerStyle = {
 	position: 'fixed',
+	zIndex: 1,
 	top: 0,
 	left: 0,
 	right: 0,
-	height: headerHeight
+	minHeight: headerHeight,
+	backgroundColor: '#111'
 }
 
 const iframeSectionStyle = ({ nobar }) => ({
@@ -31,6 +33,7 @@ const iframeStyle = {
 }
 
 const errorStyle = {
+	margin: 0,
 	color: 'red'
 }
 
@@ -267,7 +270,8 @@ export default class App extends React.Component {
 						<input
 							value={ boardID }
 							placeholder='Paste URL'
-							style={{ width: '6.5em' }}
+							style={{
+								width: '6.5em' }}
 							onChange={ this.onChangeBoardID }
 							onKeyPress={ this.onKeypressBoardID }
 							onBlur={ this.onCommitBoardID }
