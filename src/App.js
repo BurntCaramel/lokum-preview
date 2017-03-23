@@ -180,15 +180,16 @@ export default class App extends React.Component {
 		input = input.replace(/^https?:\/\/trello.com\/b\//, '')
 		const boardID = input.split('/')[0]
 
-		this.setState(Object.assign({
+		this.setState(prev => ({
 			boardID,
 			initialPath: path,
-		}, !!displayOptions ? { displayOptions } : null))
+			displayOptions: displayOptions || prev.displayOptions
+		}))
 		
 		if (load && boardID.length > 0) {
 			this.loadBoard(input)
 		}
-		
+
 		return true
 	}
 
@@ -266,6 +267,7 @@ export default class App extends React.Component {
 						&nbsp;
 						<input
 							value={ boardID }
+							placeholder='Paste URL'
 							style={{ width: '6.5em' }}
 							onChange={ this.onChangeBoardID }
 							onKeyPress={ this.onKeypressBoardID }
