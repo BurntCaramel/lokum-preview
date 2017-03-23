@@ -41,10 +41,12 @@ const GitHubIcon = ({ width, height }) => (
 )
 
 function parseHash(hashInput) {
-	const [ boardID, ...pathComponents ] = hashInput.split('/')
-	let pathname = '/' + (pathComponents.join('/') || '')
 	// displayOptions are added as mock query variables
-	const [ path, optionsJoined = '' ] = pathname.split('?')
+	const [ rest, optionsJoined = '' ] = hashInput.split('?')
+	// boardID is first path component
+	const [ boardID, ...pathComponents ] = rest.split('/')
+	const path = '/' + (pathComponents.join('/') || '')
+	
 	const optionsArray = optionsJoined.split('&').filter(string => string.length > 0)
 	const displayOptions = optionsArray.reduce((options, pair) => {
 		const [ key, value = true ] = pair.split('=')
