@@ -188,8 +188,12 @@ export default class App extends React.Component {
 			initialPath: path,
 			displayOptions: displayOptions || prev.displayOptions
 		}))
+
+		if (boardID.length === 0) {
+			return false
+		}
 		
-		if (load && boardID.length > 0) {
+		if (load) {
 			this.loadBoard(input)
 		}
 
