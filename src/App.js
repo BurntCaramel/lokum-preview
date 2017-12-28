@@ -270,16 +270,18 @@ export default class App extends React.Component {
 			<main>
 				{ (!nobar) &&
 					<header style={ headerStyle }>
-						{ 'Trello Board ID: ' }
-						<input
-							value={ boardID }
-							placeholder='Paste URL'
-							style={{
-								width: '6.5em' }}
-							onChange={ this.onChangeBoardID }
-							onKeyPress={ this.onKeypressBoardID }
-							onBlur={ this.onCommitBoardID }
-						/>
+						<label>
+							{ 'Trello Board ID: ' }
+							<input
+								value={ boardID }
+								placeholder='Paste URL'
+								style={{
+									width: '6.5em' }}
+								onChange={ this.onChangeBoardID }
+								onKeyPress={ this.onKeypressBoardID }
+								onBlur={ this.onCommitBoardID }
+							/>
+						</label>
 						{ boardError && <p style={ errorStyle }>Error loading: { boardError.message }</p> }
 						<a href="https://github.com/RoyalIcing/lokum" style={{
 							position: 'absolute',
