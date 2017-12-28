@@ -120,6 +120,7 @@ export default class App extends React.Component {
 		super(props)
 
 		this.state = {
+			boardError: null,
 			boardID: null,
 			pendingLoad: true,
 			initialPath: '/',
@@ -282,7 +283,12 @@ export default class App extends React.Component {
 								onBlur={ this.onCommitBoardID }
 							/>
 						</label>
-						{ boardError && <p style={ errorStyle }>Error loading: { boardError.message }</p> }
+						{ boardError &&
+							<p style={ errorStyle }>
+								{' Error loading: '}
+								{ boardError.message }
+							</p>
+						}
 						<a href="https://github.com/RoyalIcing/lokum" style={{
 							position: 'absolute',
 							top: 3,
